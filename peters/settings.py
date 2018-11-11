@@ -33,7 +33,7 @@ SECRET_KEY = 'o*)pzqc+0#1!^birb3)v%bhjk%a33o2uk%u4r957bwi@g-n_j5'
 # SECURITY WARNING: don't run with debug turned on in production!
 if ENV == 'prod':
     DEBUG = False
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ['peters.torfeld6.com']
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
