@@ -1,0 +1,184 @@
+{%  load static i18n %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Peter Heller's Trainingscenter</title>
+    <link rel="stylesheet" href="{% static "semantic/semantic.css" %}">
+    <style>
+        body {
+            background-color: #F3F3F4;
+        }
+        video {
+            background-color: black;
+        }
+        .ui.container {
+            margin-top: 2em;
+        }
+        .ui.grid {
+            margin-top: 24px;
+        }
+        .ui.table th.price,
+        .ui.table td.price {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="ui text container">
+    <h1><img class="ui centered medium image" src="{% static "images/logo.png" %}" alt="Peter Heller's Trainingscenter"></h1>
+    <video width="100%" controls>
+        <source src="{% static "videos/EHC 2010. Peter Heller (Sui).ogg" %}" type="video/ogg">
+        <source src="{% static "videos/EHC 2010. Peter Heller (Sui).mp4" %}" type="video/mp4">
+    </video>
+    <h1 class="ui dividing header">{%  trans "events" %}</h1>
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>{%  trans "date" %}</th>
+            <th>{%  trans "title" %}</th>
+            <th>{%  trans "information" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% if event_list %}
+                <ul>
+                    {% for event in event_list %}
+                        <tr>
+                            <td>{{ event.date }}</td>
+                            <td>{{ event.title }}</td>
+                            <td>
+                                {% if event.description %}
+                                    <a href="{{  event.description.url }}/" target="_blank">
+                                        &raquo; Download
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <tr><td colspan="3">Keine geplanten Anlässe.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <h1 class="ui dividing header">Schiessanlage</h1>
+    <h2 class="ui header">Preisliste</h2>
+    Alle Preise verstehen sich in Schweizer Franken (CHF) inkl. MwSt.
+    <h3>Einzeleintritt</h3>
+    <table class="ui table">
+        <thead>
+        <tr>
+            <th>Dauer</th>
+            <th class="price">Preis pro Person</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1 Stunde</td>
+            <td class="price">50.00</td>
+        </tr>
+        <tr>
+            <td>1 Stunde ab 2 Personen</td>
+            <td class="price">40.00</td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>Pauschalen</h3>
+    <table class="ui table">
+        <thead>
+        <tr>
+            <th>Dauer</th>
+            <th>Tage</th>
+            <th>Uhrzeit</th>
+            <th class="price">Preis</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="3">1 Stunde</td>
+            <td class="price">150.00</td>
+        </tr>
+        <tr>
+            <td rowspan="3">1/2 Tag</td>
+            <td rowspan="3">Montag bis Freitag</td>
+            <td>8 bis 12 Uhr</td>
+            <td class="price">300.00</td>
+        </tr>
+        <tr>
+            <td>13 bis 17 Uhr</td>
+            <td class="price">300.00</td>
+        </tr>
+        <tr>
+            <td>18 bis 22 Uhr</td>
+            <td class="price">350.00</td>
+        </tr>
+        <tr>
+            <td rowspan="3">1/2 Tag</td>
+            <td rowspan="3">Samstag und Sonntag</td>
+            <td>8 bis 12 Uhr</td>
+            <td class="price">350.00</td>
+        </tr>
+        <tr>
+            <td>13 bis 17 Uhr</td>
+            <td class="price">350.00</td>
+        </tr>
+        <tr>
+            <td>18 bis 22 Uhr</td>
+            <td class="price">350.00</td>
+        </tr>
+        <tr>
+            <td rowspan="2">1 Tag</td>
+            <td>Montag bis Freitag</td>
+            <td>8 bis 17 Uhr</td>
+            <td class="price">450.00</td>
+        </tr>
+        <tr>
+            <td>Samstag und Sonntag</td>
+            <td>8 bis 17 Uhr</td>
+            <td class="price">550.00</td>
+        </tr>
+        <tr>
+            <td rowspan="2">1 Tag+</td>
+            <td>Montag bis Freitag</td>
+            <td>8 bis 22 Uhr</td>
+            <td class="price">700.00</td>
+        </tr>
+        <tr>
+            <td>Samstag und Sonntag</td>
+            <td>8 bis 17 Uhr</td>
+            <td class="price">800.00</td>
+        </tr>
+        </tbody>
+    </table>
+    <h4>Hinweis</h4>
+    <ul>
+        <li>Die Zeitspannen beginnen mit dem Betreten und enden mit dem Verlassen der Schiessanlage. Es versteht sich, dass das Aufräumen und Instand stellen der Ordnung innerhalb der bezahlten Zeitspanne geschehen muss.</li>
+        <li><strong>Annulationen:</strong> Einzeleintritte können bis 24 Stunden und Pauschalen bis 30 Tage vor dem Termin abgesagt werden, danach werden sie voll verrechnet.</li>
+    </ul>
+    <div class="ui grid">
+        <div class="eight wide column">
+            <h3 class="ui header">Öffnungszeiten</h3>
+            <p>Montag bis Sonntag<br>
+                8:00 bis 22:00 Uhr</p>
+            <p>Nur nach telefonischer Vereinbarung!</p>
+        </div>
+        <div class="eight wide column">
+            <h3 class="ui header">Kontakt</h3>
+            <address>
+                <p>IPSC Trainingscenter<br>
+                    Saligasse 6<br>
+                    5018 Erlinsbach</p>
+                <p>Phone +41 (0)62 844 32 30<br>
+                    Mobile +41 (0)79 657 96 82<br>
+                    <a href="mailto:ipsc@peterheller.ch">ipsc@peterheller.ch</a></p>
+            </address>
+        </div>
+    </div>
+</div>
+<script src="{% static "jquery/jquery-3.3.1.min.js" %}"></script>
+<script src="{% static "semantic/semantic.js" %}"></script>
+</body>
+</html>
